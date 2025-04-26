@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c851e209-e5f6-4762-b33f-f7686a894b11" name="Changes" comment="" />
+    <list default="true" id="c851e209-e5f6-4762-b33f-f7686a894b11" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/AccountHolderTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/FiveGameTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/GameTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/NameNumGameTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PNG/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/AccountHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/AccountHolder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/NameNumGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/NameNumGame.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +27,21 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;lukerealofficialreal&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/lukerealofficialreal/PNG-springboot.git&quot;,
+    &quot;accountId&quot;: &quot;ead98d12-8374-44ee-8a1d-8130dfd21e69&quot;
+  }
+}</component>
   <component name="ProjectCodeStyleSettingsMigration">
     <option name="version" value="2" />
   </component>
@@ -30,21 +55,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.PngApplication.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/raul/Documents/Projects/PNG-springboot&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.PngApplication.executor": "Run",
+    "JUnit.AccountHolderTests.testAccountHolderPojo.executor": "Run",
+    "JUnit.FiveGameTests.executor": "Coverage",
+    "JUnit.GameTests.executor": "Coverage",
+    "JUnit.GameTests.test5GamePojo.executor": "Coverage",
+    "JUnit.NameNumGameTests.testSwap.executor": "Run",
+    "JUnit.NameNumGameTests.testValidateName.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/raul/Documents/Projects/PNG-springboot",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.game.PNG" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.NameNumGameTests.testValidateName">
     <configuration default="true" type="Babashka" factoryName="BabashkaLocalRepl" activateToolWindowBeforeRun="false">
       <setting name="displayName" value="" />
       <setting name="bbPath" value="" />
@@ -76,6 +110,93 @@
       <setting name="urlFile" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="AccountHolderTests.testAccountHolderPojo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PNG" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.PNG.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.PNG" />
+      <option name="MAIN_CLASS_NAME" value="com.game.PNG.AccountHolderTests" />
+      <option name="METHOD_NAME" value="testAccountHolderPojo" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FiveGameTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PNG" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.PNG.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.PNG" />
+      <option name="MAIN_CLASS_NAME" value="com.game.PNG.FiveGameTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PNG" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.PNG.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.PNG" />
+      <option name="MAIN_CLASS_NAME" value="com.game.PNG.GameTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NameNumGameTests.testSwap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PNG" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.PNG.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.PNG" />
+      <option name="MAIN_CLASS_NAME" value="com.game.PNG.NameNumGameTests" />
+      <option name="METHOD_NAME" value="testSwap" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NameNumGameTests.testValidateName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PNG" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.PNG.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.PNG" />
+      <option name="MAIN_CLASS_NAME" value="com.game.PNG.NameNumGameTests" />
+      <option name="METHOD_NAME" value="testValidateName" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.NameNumGameTests.testValidateName" />
+        <item itemvalue="JUnit.NameNumGameTests.testSwap" />
+        <item itemvalue="JUnit.AccountHolderTests.testAccountHolderPojo" />
+        <item itemvalue="JUnit.FiveGameTests" />
+        <item itemvalue="JUnit.GameTests" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -98,5 +219,16 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/PNG_springboot$FiveGameTests.ic" NAME="FiveGameTests Coverage Results" MODIFIED="1745682453603" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.game.PNG.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/PNG_springboot$GameTests_test5GamePojo.ic" NAME="GameTests.test5GamePojo Coverage Results" MODIFIED="1745352326796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.game.PNG.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/PNG_springboot$GameTests.ic" NAME="GameTests Coverage Results" MODIFIED="1745354241702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.game.PNG.*</FILTER>
+    </SUITE>
   </component>
 </project>

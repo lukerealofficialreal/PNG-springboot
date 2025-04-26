@@ -6,15 +6,15 @@ import java.lang.Math;
 
 public class NameNumGame {
 
-   public static final Integer min = 0;
-   public static final Integer max = 10000;
-   public static final Integer maxNameLen = 26;
-   
+    public static final Integer maxNameLen = 26;
+    private static final Integer min = Game.MIN_NUM;
+    private static final Integer max = Game.MAX_NUM;
+
    public static void doGame(Game game, Integer guess, String theName) {
 	
  	//response.setContentType("text/html; charset=UTF-8");
 	//PrintWriter out = response.getWriter();
-		
+
 	//ignore any entered names if the session was already made
 	String name = theName.toUpperCase();
 
@@ -77,7 +77,7 @@ public class NameNumGame {
 		switch(letter)
 		{
 			case 'A':
-				result = func_A(result);	
+                result = func_A(result);
 				break;
 			case 'B':
 				result = func_B(result);
@@ -195,7 +195,7 @@ public class NameNumGame {
         	return num;
    	}
 
-        //Compute hypontenuse
+        //Compute hypotenuse
         public static Integer func_C(Integer num)
         {
 		Integer C = (int)Math.sqrt((num*num) + (num*num)); 
@@ -218,7 +218,7 @@ public class NameNumGame {
         {
                 return num/3;
         }
-        //Add subtract all colors but green
+        //subtract all colors but green
         public static Integer func_G(Integer num)
         {
                 return(num - 16711935);

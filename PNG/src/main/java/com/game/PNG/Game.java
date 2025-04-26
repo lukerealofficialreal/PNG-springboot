@@ -80,7 +80,7 @@ public class Game {
         else
             uid = owner.getUid();
         return String.format(
-                "Customer[gid=%d, goalnum='%d', victory='%s', lastguess='%d', uid='%d']",
+                "Customer[gid='%d', goalnum='%d', victory='%s', lastguess='%d', uid='%d']",
                 gid, goalnum, Boolean.toString(victory), lastguess, uid);
     }
 

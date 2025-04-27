@@ -56,8 +56,8 @@ public class PngApplication {
 				linkTo(methodOn(PngApplication.class).getFGG()).withSelfRel());
 	}
 
-	//'create' a new five game resource
-	//One shared five game resource already exists; return that
+	//create a new guess in five game
+	//return the outcome of the guess on the game
 	@PutMapping("/FGG/{guess}")
 	public EntityModel<Game> guessFGG(@PathVariable(value = "guess") Integer guess) {
 		Game gameCopy = FGG.copy();
@@ -87,7 +87,7 @@ public class PngApplication {
 		Game game = new Game(new Random().nextInt(Game.MAX_NUM - Game.MIN_NUM + 1) + Game.MIN_NUM);
 		game.setOwner(newUser);
 
-		gameRepository.save(game);
+		game = gameRepository.save(game);
 
 		//return game;
 
@@ -136,9 +136,7 @@ public class PngApplication {
 		AccountHolder newUser = new AccountHolder(name);
 
 		//create game
-		accountHolderRepository.save(newUser);
-
-		accountHolderRepository.findByUid(3L);
+		newUser = accountHolderRepository.save(newUser);
 
 		return EntityModel.of(newUser,
 				linkTo(methodOn(PngApplication.class).makePNG(newUser.getUid())).withSelfRel());

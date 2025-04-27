@@ -37,10 +37,14 @@ public class Game {
     public Long getGid() {
         return gid;
     }
+    public void setGid(long gid) {
+        this.gid = gid;
+    }
 
     public Integer getGoalnum() {
         return goalnum;
     }
+
     public void setGoalnum(Integer goalnum) {
         this.goalnum = goalnum;
     }
@@ -80,7 +84,7 @@ public class Game {
         else
             uid = owner.getUid();
         return String.format(
-                "Customer[gid='%d', goalnum='%d', victory='%s', lastguess='%d', uid='%d']",
+                "Game[gid='%d', goalnum='%d', victory='%s', lastguess='%d', uid='%d']",
                 gid, goalnum, Boolean.toString(victory), lastguess, uid);
     }
 

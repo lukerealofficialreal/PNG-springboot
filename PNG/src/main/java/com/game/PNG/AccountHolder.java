@@ -38,6 +38,9 @@ public class AccountHolder extends RepresentationModel<AccountHolder> {
     {
         this.name = name;
     }
+    public void setUid(long uid) {
+        this.uid = uid;
+    }
     public void putGame(Game game) {
         this.games.add(game);
     }

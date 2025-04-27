@@ -8,7 +8,7 @@ import java.util.List;
 public interface AccountHolderRepository extends
 CrudRepository<AccountHolder, Long>{
 
-    AccountHolder findByUid(Long uid);
+    AccountHolder findByUid(long uid);
 
     //List<AccountHolder> getAll();
 

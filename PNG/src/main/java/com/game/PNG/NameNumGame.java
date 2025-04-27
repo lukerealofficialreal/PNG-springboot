@@ -64,8 +64,8 @@ public class NameNumGame {
    //Returns true if the given string represents a valid name, returns false otherwise
    public static boolean validateName(String name)
    {
-	if(name == null){return false;} //null names not allowed
-	return  name.length() <= maxNameLen && name.matches("[a-zA-Z]+");
+        if(name == null){return false;} //null names not allowed
+        return  name.length() <= maxNameLen && name.matches("[a-zA-Z]+");
    }
 
    public static Integer applyNameFunctions(Integer num, String name)
@@ -174,11 +174,9 @@ public class NameNumGame {
                                 break;
 
 
-		}
-		//Add extra to the overflow so that all possible integer values are guessable
-		result = (result%max + (num/max))%max;
-	}
-	return result;
+		    }
+	    }
+	    return result;
    }
 
    	//Adds 10
@@ -195,182 +193,165 @@ public class NameNumGame {
         	return num;
    	}
 
-        //Compute hypotenuse
-        public static Integer func_C(Integer num)
-        {
-		Integer C = (int)Math.sqrt((num*num) + (num*num)); 
-                return C;
-        }
+    //add 32
+    public static Integer func_C(Integer num)
+    {
+        return num+32;
+    }
 
-	//Decrement and divide by 4
-        public static Integer func_D(Integer num)
-        {
-		return (num--)/4;
-        }
-        //multiply by euler's number
-        public static Integer func_E(Integer num)
-        {
-                return (int)(num*Math.E);
-        }
+    //Decrement
+    public static Integer func_D(Integer num)
+    {
+    return num-1;
+    }
 
-	//Fraction into thirds
-        public static Integer func_F(Integer num)
-        {
+    //Divide by 3 if num is divisble by 3
+    public static Integer func_E(Integer num)
+    {
+            if(num%3 == 0)
                 return num/3;
-        }
-        //subtract all colors but green
-        public static Integer func_G(Integer num)
-        {
-                return(num - 16711935);
-        }
+            else
+                return num;
+    }
+
+	//subtract 5
+    public static Integer func_F(Integer num)
+    {
+                return num-5;
+    }
+
+    //subtract 16711935
+    public static Integer func_G(Integer num)
+    {
+            return(num - 16711935);
+    }
 
 	//Halve the guess
-        public static Integer func_H(Integer num)
-        {
-                return num/2;
-        }
-        //Increment by 1
-        public static Integer func_I(Integer num)
-        {
-                return ++num;
-        }
+    public static Integer func_H(Integer num)
+    {
+            return num/2;
+    }
+    //Increment by 1
+    public static Integer func_I(Integer num)
+    {
+            return num+1;
+    }
 
-	//Add 128, Jump to M
-        public static Integer func_J(Integer num)
+	//Add 128
+    public static Integer func_J(Integer num)
 	{
-                return func_M(num+128);
+                return num+128;
 	}
-        //convert to kilometers
-        public static Integer func_K(Integer num)
+
+    //convert to kilometers
+    public static Integer func_K(Integer num)
         {
                 return num/1000;
         }
 
-	//Left shift by 1
-        public static Integer func_L(Integer num)
+	//Right shift by 2
+    public static Integer func_L(Integer num)
         {
-                return num<<1;
+                return num>>2;
         }
-        //Multiply by 1.2
-        public static Integer func_M(Integer num)
+
+    //add 4591
+    public static Integer func_M(Integer num)
         {
-                return (int)(num*1.2);
+                return num+4591;
         }
 
 	//Negate
-        public static Integer func_N(Integer num)
+    public static Integer func_N(Integer num)
         {
                 return num*(-1);
         }
-        //Check out of bounds
-        public static Integer func_O(Integer num)
+
+    //divide by 1.2
+    public static Integer func_O(Integer num)
    	{
-		if(num < min)
-			return num+1000;
-		if(num > max)
-			return num-1000;
-                return num+10;
-        }
+        return (int)(num/1.2);
+    }
 
-	//Partition	
-        public static Integer func_P(Integer num)
-        {
-		char[] strNum = num.toString().toCharArray();
-		int low = 0;
-		int high = strNum.length-1;
-		char pivot = strNum[high];
-			
-		int stab = low - 1;;
-		for (int j = low; j <= high; j++) {
-            		if (strNum[j] < pivot) {
-                	swap(strNum, ++stab, j);
-            		}	
-        	}
-		swap(strNum, ++stab, high);
-                Integer result = Integer.valueOf(new String(strNum));
-		return num;
-        }
+	//plus 2
+    public static Integer func_P(Integer num)
+    {
+        return num+2;
+    }
 
-        //Add 5, call func U
+    //Add 13, call func U
 	public static Integer func_Q(Integer num)
         {
-                return func_U(num+5);
+                return func_U(num+13);
         }
 
-	//Right shift
-        public static Integer func_R(Integer num)
-        {
-                return num>>1;
-        }
-        //Swap first and last digit
-        public static Integer func_S(Integer num)
-        {
-		char[] strNum = num.toString().toCharArray();
-		swap(strNum, 0, strNum.length-1);
-                return Integer.valueOf(new String(strNum));
-        }
+	//subtract from maximum
+    public static Integer func_R(Integer num)
+    {
+            return max-num;
+    }
 
-	//Total the value of each digit
-	public static Integer func_T(Integer num)
-        {
-                char[] strNum = num.toString().toCharArray();
-		Integer result = 0;
-		for(char character : strNum)
-		{
-			result += (int)(character);
-		}
-                return result + num;
+    //Swap last and second to last digit if number is > 100
+    public static Integer func_S(Integer num)
+    {
+        if(num < 100)
+            return num;
+        else {
+            char[] strNum = num.toString().toCharArray();
+            swap(strNum, strNum.length - 2, strNum.length - 1);
+            return Integer.valueOf(new String(strNum));
         }
-        //Unary operator
-        public static Integer func_U(Integer num)
-        {
-		if(num > 2000)
-		{
-			return (int)(Math.log(num));
-		}	
-		else if ((num < 1000) && (num > 1))
-		{
-			return (int)Math.exp(num);
-		}
-		else
-			return num;
-        }
+    }
 
-	//Variance
-        public static Integer func_V(Integer num)
-        {
-                return num+(new Random().nextInt(2 - 0 + 1) - 1);
-        }
+	//remove leftmost digit and add it
+	public static Integer func_T(Integer num) {
+        String numberStr = String.valueOf(num);
 
-	//Double U
-        public static Integer func_W(Integer num)
-        {
-                return func_U(func_U(num));
-        }
+        String remainingDigits = numberStr.substring(1);
+        if(remainingDigits.length() == 0)
+            return num;
+        Integer result = Integer.parseInt(remainingDigits);
 
-        //times 37
-        public static Integer func_X(Integer num)
-        {
-		return num*37;
-        }
+        String leftMostDigit = numberStr.substring(0, 1);
+        Integer add = Integer.parseInt(leftMostDigit);
+        return result + add;
+    }
 
-        //Y
-        public static Integer func_Y(Integer num)
-        {
-		return (num*77/2)>>>1;
-        }
-	//Z
-        public static Integer func_Z(Integer num)
-        {
-                char[] strNum = num.toString().toCharArray();
-                Integer result = -45;
-                for(char character : strNum)
-                {
-                        result += Integer.valueOf(character);
-                }
-		result += 2 + func_Y(num) + func_C(num) - num;
-                return result;
-        }
+    //square root
+    public static Integer func_U(Integer num)
+    {
+        return (int)Math.sqrt(num);
+    }
+
+	//add 77
+    public static Integer func_V(Integer num)
+    {
+        return num+77;
+    }
+
+	//+1011
+    public static Integer func_W(Integer num)
+    {
+            return num+1011;
+    }
+
+    //add 12345
+    public static Integer func_X(Integer num)
+    {
+		return num+12345;
+    }
+
+    //multiply by 2, divide by 3
+    public static Integer func_Y(Integer num)
+    {
+    return (num*2)/3;
+    }
+
+	//combine result of func_A, func_B, func_C, func_D, func_E
+    public static Integer func_Z(Integer num)
+    {
+        return func_A(func_B(func_C(func_D(num))));
+    }
 	public static void swap(char[] arr, int i, int j) {
 	    char temp = arr[i];
 	    arr[i] = arr[j];

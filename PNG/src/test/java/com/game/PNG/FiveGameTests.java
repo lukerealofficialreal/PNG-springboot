@@ -11,7 +11,7 @@ public class FiveGameTests {
 
     @BeforeEach
     void setUp() {
-        new Game(5);
+        game = new Game(5);
     }
 
     @Test

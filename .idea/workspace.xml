@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c851e209-e5f6-4762-b33f-f7686a894b11" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/AccountHolderTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/FiveGameTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/GameTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/NameNumGameTests.java" afterDir="false" />
+    <list default="true" id="c851e209-e5f6-4762-b33f-f7686a894b11" name="Changes" comment="added tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PNG/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/AccountHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/AccountHolder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/Game.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/NameNumGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/NameNumGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/FiveGameTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/FiveGameTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/NameNumGameTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/NameNumGameTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,10 +54,61 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.PngApplication.executor": "Run",
+    "JUnit.AccountHolderTests.executor": "Coverage",
     "JUnit.AccountHolderTests.testAccountHolderPojo.executor": "Run",
     "JUnit.FiveGameTests.executor": "Coverage",
     "JUnit.GameTests.executor": "Coverage",
     "JUnit.GameTests.test5GamePojo.executor": "Coverage",
+    "JUnit.NameNumGameTests.executor": "Coverage",
+    "JUnit.NameNumGameTests.testDoGame_nameA_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameA_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameB_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameB_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameC_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameC_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameD_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameD_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameE_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameE_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameF_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameF_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameG_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameG_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameH_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameH_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameI_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameI_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameJ_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameJ_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameK_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameK_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameL_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameL_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameM_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameM_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameN_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameN_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameO_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameO_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameP_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameP_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameQ_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameQ_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameR_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameR_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameS_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameS_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameT_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameT_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameU_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameU_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameV_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameW_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameW_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameY_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameY_expOutput.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameZ_correctGuess.executor": "Run",
+    "JUnit.NameNumGameTests.testDoGame_nameZ_expOutput.executor": "Run",
     "JUnit.NameNumGameTests.testSwap.executor": "Run",
     "JUnit.NameNumGameTests.testValidateName.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -78,7 +125,7 @@
       <recent name="com.game.PNG" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.NameNumGameTests.testValidateName">
+  <component name="RunManager" selected="JUnit.NameNumGameTests">
     <configuration default="true" type="Babashka" factoryName="BabashkaLocalRepl" activateToolWindowBeforeRun="false">
       <setting name="displayName" value="" />
       <setting name="bbPath" value="" />
@@ -110,7 +157,7 @@
       <setting name="urlFile" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="AccountHolderTests.testAccountHolderPojo" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AccountHolderTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PNG" />
       <extension name="coverage">
         <pattern>
@@ -120,8 +167,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.game.PNG" />
       <option name="MAIN_CLASS_NAME" value="com.game.PNG.AccountHolderTests" />
-      <option name="METHOD_NAME" value="testAccountHolderPojo" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -156,7 +202,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NameNumGameTests.testSwap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="NameNumGameTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PNG" />
       <extension name="coverage">
         <pattern>
@@ -166,13 +212,12 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.game.PNG" />
       <option name="MAIN_CLASS_NAME" value="com.game.PNG.NameNumGameTests" />
-      <option name="METHOD_NAME" value="testSwap" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NameNumGameTests.testValidateName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="NameNumGameTests.testDoGame_nameZ_correctGuess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PNG" />
       <extension name="coverage">
         <pattern>
@@ -182,7 +227,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.game.PNG" />
       <option name="MAIN_CLASS_NAME" value="com.game.PNG.NameNumGameTests" />
-      <option name="METHOD_NAME" value="testValidateName" />
+      <option name="METHOD_NAME" value="testDoGame_nameZ_correctGuess" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -190,11 +235,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.NameNumGameTests.testValidateName" />
-        <item itemvalue="JUnit.NameNumGameTests.testSwap" />
-        <item itemvalue="JUnit.AccountHolderTests.testAccountHolderPojo" />
-        <item itemvalue="JUnit.FiveGameTests" />
+        <item itemvalue="JUnit.NameNumGameTests" />
         <item itemvalue="JUnit.GameTests" />
+        <item itemvalue="JUnit.FiveGameTests" />
+        <item itemvalue="JUnit.AccountHolderTests" />
+        <item itemvalue="JUnit.NameNumGameTests.testDoGame_nameZ_correctGuess" />
       </list>
     </recent_temporary>
   </component>
@@ -207,7 +252,31 @@
       <option name="presentableId" value="Default" />
       <updated>1744378283858</updated>
     </task>
+    <task id="LOCAL-00001" summary="added tests">
+      <option name="closed" value="true" />
+      <created>1745685162842</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1745685162842</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="added tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="added tests" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -217,17 +286,28 @@
           <line>75</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/NameNumGame.java</url>
+          <line>316</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PNG_springboot$FiveGameTests.ic" NAME="FiveGameTests Coverage Results" MODIFIED="1745682453603" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/PNG_springboot$NameNumGameTests.ic" NAME="NameNumGameTests Coverage Results" MODIFIED="1745765994711" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.game.PNG.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/PNG_springboot$FiveGameTests.ic" NAME="FiveGameTests Coverage Results" MODIFIED="1745765941389" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+      <FILTER>com.game.PNG.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/PNG_springboot$AccountHolderTests.ic" NAME="AccountHolderTests Coverage Results" MODIFIED="1745765877311" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>com.game.PNG.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/PNG_springboot$GameTests_test5GamePojo.ic" NAME="GameTests.test5GamePojo Coverage Results" MODIFIED="1745352326796" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>com.game.PNG.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/PNG_springboot$GameTests.ic" NAME="GameTests Coverage Results" MODIFIED="1745354241702" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
+    <SUITE FILE_PATH="coverage/PNG_springboot$GameTests.ic" NAME="GameTests Coverage Results" MODIFIED="1745765962394" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true">
       <FILTER>com.game.PNG.*</FILTER>
     </SUITE>
   </component>

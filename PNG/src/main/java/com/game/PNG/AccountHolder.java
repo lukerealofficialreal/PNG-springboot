@@ -29,13 +29,17 @@ public class AccountHolder extends RepresentationModel<AccountHolder> {
     public Long getUid() {return uid;}
     public String getName() {return name;}
 
-
     public boolean userHasGame(Game game) {
         return games.contains(game);
     }
 
     //Setters
-    public void setName(String name) {this.name = name;}
-    public void putGame(Game game) {this.games.add(game);}
+    public void setName(String name)
+    {
+        this.name = name;
+    }
+    public void putGame(Game game) {
+        this.games.add(game);
+    }
 
 }

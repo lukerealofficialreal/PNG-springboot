@@ -53,7 +53,7 @@ public class GameTests {
         PNG.setGoalnum(6);
         PNG.setLastguess(6);
         PNG.setVictory(true);
-        AccountHolder accountHolder = new AccountHolder("test");
+        AccountHolder accountHolder = new AccountHolder("test", 1);
         PNG.setOwner(accountHolder);
 
         assertNull(PNG.getGid());
@@ -76,15 +76,6 @@ public class GameTests {
     void testToString() {
         String str = FGG.toString();
         System.out.println(str);
-        assertEquals(str, "Customer[gid='null', goalnum='5', victory='false', lastguess='null', uid='null']");
-
-        //TODO: Mock database to test uid
-        /*
-        str = PNG.toString();
-        AccountHolder accountHolder = new AccountHolder("test");
-        PNG.setOwner(accountHolder);
-        System.out.println(str);
-        assertEquals(str, "Customer[gid='null', goalnum='1000', victory='false', lastguess='null', uid='null']");
-        */
+        assertEquals(str, "Game[gid='null', goalnum='5', victory='false', lastguess='null', uid='null']");
     }
 }

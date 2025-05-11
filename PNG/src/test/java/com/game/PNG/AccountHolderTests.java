@@ -14,7 +14,7 @@ public class AccountHolderTests {
 
     @BeforeEach
     void setUp() {
-        accountHolder = new AccountHolder("Robert");
+        accountHolder = new AccountHolder("Robert", null);
     }
 
     @Test

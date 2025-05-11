@@ -7,12 +7,17 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.*;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
+import org.springframework.security.oauth2.core.OAuth2AuthenticatedPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
-
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
-
+import java.util.Map;
 import java.util.Random;
 
 @SpringBootApplication
@@ -33,15 +38,26 @@ public class PngApplication {
 		SpringApplication.run(PngApplication.class, args);
 	}
 
+
 	@GetMapping("/hello")
 	public String hello(@RequestParam(value = "name", defaultValue = "World") String name) {
+		log.info("Accessed Hello");
 		return String.format("Hello %s!", name);
+	}
+
+	@GetMapping("/token")
+	public String getAccessToken(
+			@RegisteredOAuth2AuthorizedClient("github") OAuth2AuthorizedClient authorizedClient,
+			OAuth2AuthenticationToken authentication) {
+		log.info("Accessed token");
+		return "Access Token: " + authorizedClient.getAccessToken().getTokenValue();
 	}
 
 	//'create' a new five game resource
 	//One shared five game resource already exists; return that
 	@PostMapping("/FGG")
 	public EntityModel<Game> makeFGG() {
+		log.info("Accessed makeFGG");
 		log.info(FGG.toString());
 		return EntityModel.of(FGG,
 				linkTo(methodOn(PngApplication.class).makeFGG()).withSelfRel());
@@ -51,6 +67,7 @@ public class PngApplication {
 	//One shared five game resource already exists; return that
 	@GetMapping("/FGG")
 	public EntityModel<Game> getFGG() {
+		log.info("Accessed FGG");
 		log.info(FGG.toString());
 		return EntityModel.of(FGG,
 				linkTo(methodOn(PngApplication.class).getFGG()).withSelfRel());
@@ -60,6 +77,8 @@ public class PngApplication {
 	//return the outcome of the guess on the game
 	@PutMapping("/FGG/{guess}")
 	public EntityModel<Game> guessFGG(@PathVariable(value = "guess") Integer guess) {
+		log.info("Accessed guess FGG");
+		log.info("Guess: " + guess.toString());
 		Game gameCopy = FGG.copy();
 		FiveGame.doGame(gameCopy, guess);
 		return EntityModel.of(gameCopy,
@@ -67,16 +86,13 @@ public class PngApplication {
 	}
 
 
-	@PostMapping("/PNG/{uid}")
-	public EntityModel<Game> makePNG(@PathVariable(value = "uid") Long uid) {
-
+	@PostMapping("/PNG")
+	public EntityModel<Game> makePNG(@AuthenticationPrincipal OAuth2AuthenticatedPrincipal principal) {
+		log.info("User '" + principal.getAttribute("login") + "' Accessed makePNG");
 		//Get user by given id
-		//AccountHolder newUser = null;
-		//if(accountHolderRepository != null) {
-		AccountHolder newUser = accountHolderRepository.findByUid(uid);
-		//}
-		//if user is null, create a new user
-		if(newUser == null) {
+		AccountHolder user = makeOrGetUser(principal.getAttributes());//accountHolderRepository.findByUid(uid);
+
+		if(user == null) {
 			log.info("user not found");
 			throw new ResponseStatusException(HttpStatus.valueOf(404));
 		} else {
@@ -85,35 +101,39 @@ public class PngApplication {
 
 		//create game
 		Game game = new Game(new Random().nextInt(Game.MAX_NUM - Game.MIN_NUM + 1) + Game.MIN_NUM);
-		game.setOwner(newUser);
+		game.setOwner(user);
 
 		game = gameRepository.save(game);
 
-		//return game;
 
 		return EntityModel.of(game,
-				linkTo(methodOn(PngApplication.class).getPNG(game.getOwner().getUid(), game.getGid())).withSelfRel());
-		//linkTo(methodOn(EmployeeController.class).getAllEmployees()).withRel("employees"));;;
+				linkTo(methodOn(PngApplication.class).getPNG(principal, game.getGid())).withSelfRel());
 	}
 
-	@GetMapping(value = "/PNG/{uid}/{gid}")
-	public EntityModel<Game> getPNG(@PathVariable(value = "uid") Long uid,
+	@GetMapping(value = "/PNG/{gid}")
+	public EntityModel<Game> getPNG(@AuthenticationPrincipal OAuth2AuthenticatedPrincipal principal,
 									  @PathVariable(value = "gid") Long gid) {
+
+		log.info("User '" + principal.getAttribute("login") + "' Accessed getPNG");
+
+		Integer uid = principal.getAttribute("id");
 		Game game = gameRepository.findByGid(gid);
 		if(game == null || !game.getOwner().getUid().equals(uid)) {
 			throw new ResponseStatusException(HttpStatus.valueOf(404));
 		}
-		//If there is a guess, apply it.
-		//NameNumGame.doGame(game, guess, game.getOwner().getName());
 
 		return EntityModel.of(game,
-				linkTo(methodOn(PngApplication.class).getPNG(game.getOwner().getUid(), game.getGid())).withSelfRel());
+				linkTo(methodOn(PngApplication.class).getPNG(principal, game.getGid())).withSelfRel());
 	}
 
-	@PutMapping(value ="/PNG/{uid}/{gid}/{guess}")
-	public EntityModel<Game> guessPNG(@PathVariable(value = "uid") Long uid,
+	@PutMapping(value ="/PNG/{gid}/{guess}")
+	public EntityModel<Game> guessPNG(@AuthenticationPrincipal OAuth2AuthenticatedPrincipal principal,
 									  @PathVariable(value = "gid") Long gid,
 									  @PathVariable(value = "guess", required = false) Integer guess) {
+		log.info("User '" + principal.getAttribute("login") + "' Accessed guessPNG");
+
+		Integer uid = principal.getAttribute("id");
+
 		Game game = gameRepository.findByGid(gid);
 		if(game == null || !game.getOwner().getUid().equals(uid)) {
 			throw new ResponseStatusException(HttpStatus.valueOf(404));
@@ -122,24 +142,30 @@ public class PngApplication {
 		NameNumGame.doGame(game, guess, game.getOwner().getName());
 
 		return EntityModel.of(game,
-				linkTo(methodOn(PngApplication.class).guessPNG(game.getOwner().getUid(), game.getGid(), guess)).withSelfRel());
+				linkTo(methodOn(PngApplication.class).guessPNG(principal, game.getGid(), guess)).withSelfRel());
 	}
 
-	@PostMapping("/new_user")
-	public EntityModel<AccountHolder> createAccount(@RequestParam(value = "name") String name) {
+	//@PostMapping("/new_user")
+	public AccountHolder makeOrGetUser(Map<String, Object> attributes) {
 
-		if(!NameNumGame.validateName(name))
-		{
-			throw new ResponseStatusException(HttpStatus.valueOf(405));
+		//if the user exists, return them. else make a new user
+		AccountHolder user = accountHolderRepository.findByUid((int) attributes.get("id"));
+		if(user != null) {
+			log.info("User '" + attributes.get("login").toString() + "' Exists");
+			return user;
 		}
-
-		AccountHolder newUser = new AccountHolder(name);
-
-		//create game
-		newUser = accountHolderRepository.save(newUser);
-
-		return EntityModel.of(newUser,
-				linkTo(methodOn(PngApplication.class).makePNG(newUser.getUid())).withSelfRel());
+		log.info("User '" + attributes.get("login").toString() + "' did not exist. Was created.");
+		return accountHolderRepository.save(new AccountHolder((String) attributes.get("login"), (int) attributes.get("id")));
 	}
 
+	@GetMapping("/user")
+	public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
+		return principal.getAttributes();
+	}
+
+	@GetMapping("/error")
+	public String error() {
+		return "error";
+	}
 }
+

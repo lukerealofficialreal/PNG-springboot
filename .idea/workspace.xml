@@ -4,12 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c851e209-e5f6-4762-b33f-f7686a894b11" name="Changes" comment="Reworked most guess-modifying functions in PNG to fix certain goalNums being impossible to guess and to make the game easier. Added tests to for every class except PngApplication and ran them to obtain &gt;80% line coverage.">
+    <list default="true" id="c851e209-e5f6-4762-b33f-f7686a894b11" name="Changes" comment="Added getter/setters for uid and gid. Added tests for PngApplication using mock objects. Achieved 97% coverage for the entire project.">
+      <change afterPath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/GitHubTokenIntrospector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/SecurityConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PNG/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/AccountHolder.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/AccountHolder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/AccountHolderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/AccountHolderRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/NameNumGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/NameNumGame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/PngApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/PngApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PNG/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/AccountHolderTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/AccountHolderTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/GameTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/GameTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/NameNumGameTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/NameNumGameTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/PngApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/PNG/src/test/java/com/game/PNG/PngApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,12 +64,13 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.PngApplication.executor": "Run",
-    "JUnit.AccountHolderTests.executor": "Coverage",
+    "JUnit.AccountHolderTests.executor": "Run",
     "JUnit.AccountHolderTests.testAccountHolderPojo.executor": "Run",
-    "JUnit.FiveGameTests.executor": "Coverage",
-    "JUnit.GameTests.executor": "Coverage",
+    "JUnit.FiveGameTests.executor": "Run",
+    "JUnit.GameTests.executor": "Run",
     "JUnit.GameTests.test5GamePojo.executor": "Coverage",
-    "JUnit.NameNumGameTests.executor": "Coverage",
+    "JUnit.GameTests.testToString.executor": "Run",
+    "JUnit.NameNumGameTests.executor": "Run",
     "JUnit.NameNumGameTests.testDoGame_nameA_correctGuess.executor": "Run",
     "JUnit.NameNumGameTests.testDoGame_nameA_expOutput.executor": "Run",
     "JUnit.NameNumGameTests.testDoGame_nameB_correctGuess.executor": "Run",
@@ -113,14 +123,14 @@
     "JUnit.NameNumGameTests.testSwap.executor": "Run",
     "JUnit.NameNumGameTests.testValidateName.executor": "Run",
     "JUnit.PngApplicationTests.createAccount.executor": "Run",
-    "JUnit.PngApplicationTests.executor": "Coverage",
+    "JUnit.PngApplicationTests.executor": "Run",
     "JUnit.PngApplicationTests.testGetFGG.executor": "Run",
     "JUnit.PngApplicationTests.testGetPNG.executor": "Run",
     "JUnit.PngApplicationTests.testGuessFGG.executor": "Run",
     "JUnit.PngApplicationTests.testGuessPNG.executor": "Run",
     "JUnit.PngApplicationTests.testHello.executor": "Run",
     "JUnit.PngApplicationTests.testMakeFGG.executor": "Run",
-    "JUnit.PngApplicationTests.testMakePNG.executor": "Run",
+    "JUnit.PngApplicationTests.testMakePNG.executor": "Debug",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "master",
@@ -167,6 +177,51 @@
       <setting name="urlFile" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="AccountHolderTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PNG" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.PNG.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.PNG" />
+      <option name="MAIN_CLASS_NAME" value="com.game.PNG.AccountHolderTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FiveGameTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PNG" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.PNG.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.PNG" />
+      <option name="MAIN_CLASS_NAME" value="com.game.PNG.FiveGameTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="GameTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PNG" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.game.PNG.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.game.PNG" />
+      <option name="MAIN_CLASS_NAME" value="com.game.PNG.GameTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PngApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PNG" />
       <extension name="coverage">
@@ -178,54 +233,6 @@
       <option name="PACKAGE_NAME" value="com.game.PNG" />
       <option name="MAIN_CLASS_NAME" value="com.game.PNG.PngApplicationTests" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PngApplicationTests.testGetPNG" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="PNG" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.game.PNG.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.game.PNG" />
-      <option name="MAIN_CLASS_NAME" value="com.game.PNG.PngApplicationTests" />
-      <option name="METHOD_NAME" value="testGetPNG" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PngApplicationTests.testGuessFGG" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="PNG" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.game.PNG.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.game.PNG" />
-      <option name="MAIN_CLASS_NAME" value="com.game.PNG.PngApplicationTests" />
-      <option name="METHOD_NAME" value="testGuessFGG" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="PngApplicationTests.testGuessPNG" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="PNG" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.game.PNG.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.game.PNG" />
-      <option name="MAIN_CLASS_NAME" value="com.game.PNG.PngApplicationTests" />
-      <option name="METHOD_NAME" value="testGuessPNG" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -249,10 +256,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.PngApplicationTests" />
-        <item itemvalue="JUnit.PngApplicationTests.testGuessPNG" />
-        <item itemvalue="JUnit.PngApplicationTests.testGetPNG" />
+        <item itemvalue="JUnit.AccountHolderTests" />
+        <item itemvalue="JUnit.FiveGameTests" />
+        <item itemvalue="JUnit.GameTests" />
         <item itemvalue="JUnit.PngApplicationTests.testMakePNG" />
-        <item itemvalue="JUnit.PngApplicationTests.testGuessFGG" />
       </list>
     </recent_temporary>
   </component>
@@ -281,7 +288,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745766265314</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added getter/setters for uid and gid. Added tests for PngApplication using mock objects. Achieved 97% coverage for the entire project.">
+      <option name="closed" value="true" />
+      <created>1745786859891</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1745786859892</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -298,7 +313,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added tests" />
     <MESSAGE value="Reworked most guess-modifying functions in PNG to fix certain goalNums being impossible to guess and to make the game easier. Added tests to for every class except PngApplication and ran them to obtain &gt;80% line coverage." />
-    <option name="LAST_COMMIT_MESSAGE" value="Reworked most guess-modifying functions in PNG to fix certain goalNums being impossible to guess and to make the game easier. Added tests to for every class except PngApplication and ran them to obtain &gt;80% line coverage." />
+    <MESSAGE value="Added getter/setters for uid and gid. Added tests for PngApplication using mock objects. Achieved 97% coverage for the entire project." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added getter/setters for uid and gid. Added tests for PngApplication using mock objects. Achieved 97% coverage for the entire project." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -307,6 +323,26 @@
           <url>file://$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/NameNumGame.java</url>
           <line>316</line>
           <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/PngApplication.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/PngApplication.java</url>
+          <line>70</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/PngApplication.java</url>
+          <line>96</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/PNG/src/main/java/com/game/PNG/PngApplication.java</url>
+          <line>92</line>
+          <option name="timeStamp" value="51" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

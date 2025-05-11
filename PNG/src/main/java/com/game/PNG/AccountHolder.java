@@ -10,8 +10,8 @@ import java.util.List;
 public class AccountHolder extends RepresentationModel<AccountHolder> {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private Long uid;                        //User has an ID
+    //@GeneratedValue(strategy= GenerationType.AUTO) //Use github's generated Id instead
+    private Integer uid;                        //User has an ID
     protected String name = "DEFAULT_NAME";   //The name of the user (situationally optional)
 
     @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL)
@@ -21,12 +21,13 @@ public class AccountHolder extends RepresentationModel<AccountHolder> {
     public AccountHolder() {}
 
 
-    public AccountHolder(String name) {
+    public AccountHolder(String name, Integer uid) {
         this.name = name;
+        this.uid = uid;
     }
 
     //Getters
-    public Long getUid() {return uid;}
+    public Integer getUid() {return uid;}
     public String getName() {return name;}
 
     public boolean userHasGame(Game game) {
@@ -38,7 +39,7 @@ public class AccountHolder extends RepresentationModel<AccountHolder> {
     {
         this.name = name;
     }
-    public void setUid(long uid) {
+    public void setUid(Integer uid) {
         this.uid = uid;
     }
     public void putGame(Game game) {

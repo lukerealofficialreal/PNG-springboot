@@ -78,7 +78,7 @@ public class Game {
 
     @Override
     public String toString() {
-        Long uid;
+        Integer uid;
         if(owner == null)
             uid = null;
         else

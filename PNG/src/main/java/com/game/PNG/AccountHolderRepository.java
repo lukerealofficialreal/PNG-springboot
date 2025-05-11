@@ -6,9 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 public interface AccountHolderRepository extends
-CrudRepository<AccountHolder, Long>{
+CrudRepository<AccountHolder, Integer>{
 
-    AccountHolder findByUid(long uid);
+    AccountHolder findByUid(Integer uid);
 
     //List<AccountHolder> getAll();
 

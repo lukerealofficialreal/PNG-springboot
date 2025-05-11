@@ -1,14 +1,14 @@
 package com.game.PNG;
 
 
-import java.util.Random;
 import java.lang.Math;
 
 public class NameNumGame {
 
-    public static final Integer maxNameLen = 26;
+    public static final Integer MAX_NAME_LEN = 26;
     private static final Integer min = Game.MIN_NUM;
     private static final Integer max = Game.MAX_NUM;
+    private static final String DEFAULT_NAME = "DEFAULT";
 
    public static void doGame(Game game, Integer guess, String theName) {
 	
@@ -16,7 +16,7 @@ public class NameNumGame {
 	//PrintWriter out = response.getWriter();
 
 	//ignore any entered names if the session was already made
-	String name = theName.toUpperCase();
+	String name = fixName(theName);
 
 	Integer goalnum = game.getGoalnum();
 	
@@ -65,7 +65,7 @@ public class NameNumGame {
    public static boolean validateName(String name)
    {
         if(name == null){return false;} //null names not allowed
-        return  name.length() <= maxNameLen && name.matches("[a-zA-Z]+");
+        return  name.length() <= MAX_NAME_LEN && name.matches("[a-zA-Z]+");
    }
 
    public static Integer applyNameFunctions(Integer num, String name)
@@ -249,10 +249,10 @@ public class NameNumGame {
                 return num/1000;
         }
 
-	//Right shift by 2
+	//+111
     public static Integer func_L(Integer num)
         {
-                return num>>2;
+                return num+111;
         }
 
     //add 4591
@@ -357,5 +357,26 @@ public class NameNumGame {
 	    arr[i] = arr[j];
 	    arr[j] = temp;
 	}
+
+    //Takes a name and modifies so that it is valid for the game
+    public static String fixName(String name) {
+       //If the string length is 0 or the string is null, return a default string
+        if(name == null || name.isEmpty()){
+            return DEFAULT_NAME;
+        }
+
+       //If name is longer than 26, crop to 26
+        String fixed = name;
+        if(fixed.length() > MAX_NAME_LEN) {
+            fixed = fixed.substring(0,MAX_NAME_LEN);
+        }
+
+        //Make the string uppercase
+        fixed = fixed.toUpperCase();
+
+        //Remove all but invalid characters
+        String pattern = fixed.replaceAll("[A-Z]", "");
+        return fixed.replaceAll(pattern, "");
+    }
 }
 

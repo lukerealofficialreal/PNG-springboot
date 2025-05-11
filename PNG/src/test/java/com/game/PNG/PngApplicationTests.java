@@ -5,31 +5,23 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultMatcher;
-
-import static net.bytebuddy.matcher.ElementMatchers.is;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.when;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.oauth2Login;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @ExtendWith(SpringExtension.class)
-/*
-@SpringBootTest(
-		webEnvironment = SpringBootTest.WebEnvironment.MOCK,
-		classes = PngApplication.class)
-@AutoConfigureMockMvc
-*/
 @WebMvcTest(PngApplication.class)
 class PngApplicationTests {
 
@@ -50,36 +42,32 @@ class PngApplicationTests {
 	AccountHolder mildred;
 
 	@BeforeEach
-	public void setUp() {
+	public void setUp() throws Exception {
 		FGG = new Game(5);
 
 		newGame = new Game(1000);
 		newGame.setGid(1L);
 
-		robert = new AccountHolder("robert");
-		robert.setUid(1L);
+		robert = new AccountHolder("robert", 1);
+		robert.setUid(1);
 
 		newGame.setOwner(robert);
 		robert.putGame(newGame);
 
-		mildred = new AccountHolder("mildred");
-		mildred.setUid(2L);
+		mildred = new AccountHolder("mildred", 2);
+		mildred.setUid(2);
 		midGame = new Game(123,null,40,false, mildred);
 		midGame.setGid(2L);
 		mildred.putGame(midGame);
-
 		when(gameRepository.findByGid(1))
 				.thenReturn(newGame);
 		when(gameRepository.findByGid(2))
 				.thenReturn(midGame);
-
 		when(accountHolderRepository.findByUid(1))
 				.thenReturn(robert);
 		when(accountHolderRepository.findByUid(2))
 				.thenReturn(mildred);
-
 		when(accountHolderRepository.save(Mockito.any(AccountHolder.class))).thenReturn(robert);
-
 		when(gameRepository.save(Mockito.any(Game.class))).thenReturn(newGame);
 	}
 
@@ -88,7 +76,12 @@ class PngApplicationTests {
 		String helloOutputDefault = "Hello World!";
 
 		mvc.perform(get("/hello")
-						.contentType(MediaType.APPLICATION_JSON))
+						.with(oauth2Login()
+						.attributes(attrs -> {
+							attrs.put("id", 1); // Simulate GitHub ID
+							attrs.put("login", "robert");
+						})
+				).contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$", equalTo(helloOutputDefault)));
 	}
@@ -96,6 +89,14 @@ class PngApplicationTests {
 	@Test
 	public void testMakeFGG() throws Exception {
 		mvc.perform(post("/FGG")
+						.with(csrf())
+						.with(oauth2Login()
+
+								.attributes(attrs -> {
+									attrs.put("id", 1); // Simulate GitHub ID
+									attrs.put("login", "robert");
+								})
+						)
 						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$['gid']", equalTo(FGG.getGid())))
@@ -109,6 +110,12 @@ class PngApplicationTests {
 	@Test
 	public void testGetFGG() throws Exception {
 		mvc.perform(get("/FGG")
+						.with(oauth2Login()
+								.attributes(attrs -> {
+									attrs.put("id", 1); // Simulate GitHub ID
+									attrs.put("login", "robert");
+								})
+						)
 						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$['gid']", equalTo(FGG.getGid())))
@@ -126,6 +133,13 @@ class PngApplicationTests {
 		incorrect.setLastguess(4);
 
 		mvc.perform(put("/FGG/4")
+						.with(csrf())
+						.with(oauth2Login()
+								.attributes(attrs -> {
+									attrs.put("id", 1); // Simulate GitHub ID
+									attrs.put("login", "robert");
+								})
+						)
 						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$['gid']", equalTo(incorrect.getGid())))
@@ -141,6 +155,13 @@ class PngApplicationTests {
 		correct.setVictory(true);
 
 		mvc.perform(put("/FGG/5")
+						.with(csrf())
+						.with(oauth2Login()
+								.attributes(attrs -> {
+									attrs.put("id", 1); // Simulate GitHub ID
+									attrs.put("login", "robert");
+								})
+						)
 						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$['gid']", equalTo(correct.getGid())))
@@ -152,68 +173,48 @@ class PngApplicationTests {
 
 		//Guess illegally
 		mvc.perform(put("/FGG/N")
+						.with(csrf())
+						.with(oauth2Login()
+								.attributes(attrs -> {
+									attrs.put("id", 1); // Simulate GitHub ID
+									attrs.put("login", "robert");
+								})
+						)
 						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest());
 	}
-
-	@Test
-	public void createAccount() throws Exception {
-		//Test with a valid name
-		String name = "robert";
-
-		mvc.perform(post("/new_user")
-						.param("name",name)
-						.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk())
-				.andExpect(jsonPath("$['uid']", equalTo((int)robert.getUid().longValue())))
-				.andExpect(jsonPath("$['name']", equalTo(robert.getName())))
-//				.andExpect(jsonPath("$['victory']", equalTo(incorrect.getVictory())))
-//				.andExpect(jsonPath("$['lastguess']", equalTo(incorrect.getLastguess())))
-//				.andExpect(jsonPath("$['owner']", equalTo(null)))
-				.andExpect(jsonPath("$['_links']['self']['href']", equalTo("http://localhost/PNG/1")));
-
-		//Test without a name
-		mvc.perform(post("/new_user")
-						.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isBadRequest());
-
-		//Test with a bad name
-		mvc.perform(post("/new_user")
-						.param("name","Robert_Gaming")
-						.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isMethodNotAllowed());
-	}
-
 
 	@Test
 	public void testMakePNG() throws Exception {
 		//Test valid user robert
-		mvc.perform(post("/PNG/%d".formatted(robert.getUid()))
+		mvc.perform(post("/PNG")
+						.with(csrf())
+						.with(oauth2Login()
+								.attributes(attrs -> {
+									attrs.put("id", 1); // Simulate GitHub ID
+									attrs.put("login", "robert");
+								})
+						)
 						.contentType(MediaType.APPLICATION_JSON))
+				.andDo(print())
 				.andExpect(status().isOk())
-				.andExpect(jsonPath("$['gid']", equalTo((int)newGame.getGid().longValue())))
+				.andExpect(jsonPath("$['gid']", equalTo((int) newGame.getGid().longValue())))
 				.andExpect(jsonPath("$['goalnum']", equalTo(newGame.getGoalnum())))
 				.andExpect(jsonPath("$['victory']", equalTo(newGame.getVictory())))
 				.andExpect(jsonPath("$['lastguess']", equalTo(newGame.getLastguess())))
-				.andExpect(jsonPath("$['owner']['uid']", equalTo((int)robert.getUid().longValue())))
+				.andExpect(jsonPath("$['owner']['uid']", equalTo((int) robert.getUid().longValue())))
 				.andExpect(jsonPath("$['owner']['name']", equalTo(robert.getName())))
-				.andExpect(jsonPath("$['_links']['self']['href']", equalTo("http://localhost/PNG/%d/%d".formatted(robert.getUid(),newGame.getGid()))));
-
-		//Test invalid user
-		mvc.perform(post("/PNG/9")
-						.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isNotFound());
-
-		//Test illegal user
-		mvc.perform(post("/PNG/robert")
-						.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isBadRequest());
+				.andExpect(jsonPath("$['_links']['self']['href']", equalTo("http://localhost/PNG/%d".formatted(newGame.getGid()))));
 	}
-
 	@Test
 	public void testGetPNG() throws Exception {
 		//Test valid user robert
-		mvc.perform(get("/PNG/%d/%d".formatted(robert.getUid(),newGame.getGid()))
+		mvc.perform(get("/PNG/%d".formatted(newGame.getGid())).with(oauth2Login()
+								.attributes(attrs -> {
+									attrs.put("id", 1); // Simulate GitHub ID
+									attrs.put("login", "robert");
+								})
+						)
 						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$['gid']", equalTo((int)newGame.getGid().longValue())))
@@ -222,30 +223,25 @@ class PngApplicationTests {
 				.andExpect(jsonPath("$['lastguess']", equalTo(newGame.getLastguess())))
 				.andExpect(jsonPath("$['owner']['uid']", equalTo((int)robert.getUid().longValue())))
 				.andExpect(jsonPath("$['owner']['name']", equalTo(robert.getName())))
-				.andExpect(jsonPath("$['_links']['self']['href']", equalTo("http://localhost/PNG/%d/%d".formatted(robert.getUid(),newGame.getGid()))));
-
-		//Test invalid user
-		mvc.perform(get("/PNG/9/1")
-						.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isNotFound());
+				.andExpect(jsonPath("$['_links']['self']['href']", equalTo("http://localhost/PNG/%d".formatted(newGame.getGid()))));
 
 		//Test invalid Game
-		mvc.perform(get("/PNG/1/9")
+		mvc.perform(get("/PNG/9").with(oauth2Login()
+								.attributes(attrs -> {
+									attrs.put("id", 1); // Simulate GitHub ID
+									attrs.put("login", "robert");
+								})
+						)
 						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound());
-
-		//Test invalid Game & user
-		mvc.perform(get("/PNG/9/9")
-						.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isNotFound());
-
-		//Test illegal user
-		mvc.perform(get("/PNG/robert/1")
-						.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isBadRequest());
 
 		//Test illegal game
-		mvc.perform(get("/PNG/2/game1")
+		mvc.perform(get("/PNG/game1").with(oauth2Login()
+								.attributes(attrs -> {
+									attrs.put("id", 1); // Simulate GitHub ID
+									attrs.put("login", "robert");
+								})
+						)
 						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest());
 	}
@@ -259,7 +255,12 @@ class PngApplicationTests {
 		incorrect.setLastguess(257);
 		incorrect.setVictory(false);
 
-		mvc.perform(put("/PNG/%d/%d/%d".formatted(robert.getUid(), incorrect.getGid(),guess))
+		mvc.perform(put("/PNG/%d/%d".formatted(incorrect.getGid(),guess)).with(csrf()).with(oauth2Login()
+								.attributes(attrs -> {
+									attrs.put("id", 1); // Simulate GitHub ID
+									attrs.put("login", "robert");
+								})
+						)
 						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$['gid']", equalTo((int) incorrect.getGid().longValue())))
@@ -268,17 +269,22 @@ class PngApplicationTests {
 				.andExpect(jsonPath("$['lastguess']", equalTo(incorrect.getLastguess())))
 				.andExpect(jsonPath("$['owner']['uid']", equalTo((int) robert.getUid().longValue())))
 				.andExpect(jsonPath("$['owner']['name']", equalTo(robert.getName())))
-				.andExpect(jsonPath("$['_links']['self']['href']", equalTo("http://localhost/PNG/%d/%d/%d"
-						.formatted(robert.getUid(), incorrect.getGid(), guess))));
+				.andExpect(jsonPath("$['_links']['self']['href']", equalTo("http://localhost/PNG/%d/%d"
+						.formatted(incorrect.getGid(), guess))));
 
 		//Test valid user mildred, valid game midGame, correct guess
-		guess = 34916;
+		guess = 5174;
 
 		Game correct = midGame.copy();
 		correct.setLastguess(123);
 		correct.setVictory(true);
 
-		mvc.perform(put("/PNG/%d/%d/%d".formatted(mildred.getUid(), correct.getGid(),guess))
+		mvc.perform(put("/PNG/%d/%d".formatted(correct.getGid(),guess)).with(csrf()).with(oauth2Login()
+								.attributes(attrs -> {
+									attrs.put("id", 2); // Simulate GitHub ID
+									attrs.put("login", "mildred");
+								})
+						)
 						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$['gid']", equalTo((int) correct.getGid().longValue())))
@@ -287,35 +293,29 @@ class PngApplicationTests {
 				.andExpect(jsonPath("$['lastguess']", equalTo(correct.getLastguess())))
 				.andExpect(jsonPath("$['owner']['uid']", equalTo((int) mildred.getUid().longValue())))
 				.andExpect(jsonPath("$['owner']['name']", equalTo(mildred.getName())))
-				.andExpect(jsonPath("$['_links']['self']['href']", equalTo("http://localhost/PNG/%d/%d/%d"
-						.formatted(mildred.getUid(), correct.getGid(), guess))));
-
-		//Test invalid user, valid game midGame, correct guess
-		guess = 34916;
-		mvc.perform(put("/PNG/%d/%d/%d".formatted(9, midGame.getGid(),guess))
-						.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isNotFound());
+				.andExpect(jsonPath("$['_links']['self']['href']", equalTo("http://localhost/PNG/%d/%d"
+						.formatted( correct.getGid(), guess))));
 
 		//Test valid user, invalid game
 		guess = 34916;
-		mvc.perform(put("/PNG/%d/%d/%d".formatted(mildred.getUid(), 9,guess))
+		mvc.perform(put("/PNG/%d/%d".formatted(9,guess)).with(csrf()).with(oauth2Login()
+								.attributes(attrs -> {
+									attrs.put("id", 1); // Simulate GitHub ID
+									attrs.put("login", "robert");
+								})
+						)
 						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNotFound());
 
 		//Test valid user, illegal game
 		guess = 34916;
-		mvc.perform(put("/PNG/%d/game2/%d".formatted(mildred.getUid(),guess))
+		mvc.perform(put("/PNG/game2/%d".formatted(guess)).with(csrf()).with(oauth2Login()
+								.attributes(attrs -> {
+									attrs.put("id", 1); // Simulate GitHub ID
+									attrs.put("login", "robert");
+								})
+						)
 						.contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isBadRequest());
-
-		//Test valid user, invalid game
-		guess = 34916;
-		mvc.perform(put("/PNG/mildred/%d/%d".formatted(9,guess))
-						.contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isBadRequest());
-
-
 	}
-
-
 }

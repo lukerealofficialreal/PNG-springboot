@@ -577,7 +577,7 @@ public class NameNumGameTests {
 
         //Run the goal nums as guess through doGame with the given game.
         //Ensure the function has the expected output
-        Integer[] expectedOutput = new Integer[] {0,0, 250, 2500};
+        Integer[] expectedOutput = new Integer[] {111,112, 1111, 10111};
 
         currCase = 0;
         for(Game game : games) {
@@ -598,7 +598,7 @@ public class NameNumGameTests {
 
         //Run the correct guesses through the doGame function
         //Ensure they result in victory
-        Integer[] correctGuesses = new Integer[] {0*4, 1*4, 1000*4, 10000*4};
+        Integer[] correctGuesses = new Integer[] {0-111, 1-111, 1000-111, 10000-111};
 
         currCase = 0;
         for(Game game : games) {
